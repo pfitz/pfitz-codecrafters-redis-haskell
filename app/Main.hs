@@ -5,7 +5,7 @@
 module Main (main) where
 
 import Network.Simple.TCP (serve, HostPreference(HostAny), closeSock)
-import Network.Socket.Bytestring (recv,send)
+import Network.Socket.ByteString (recv,send)
 
 main :: IO ()
 main = do
