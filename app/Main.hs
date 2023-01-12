@@ -6,6 +6,7 @@ module Main (main) where
 
 import Network.Simple.TCP (serve, HostPreference(HostAny), closeSock)
 import Network.Socket.ByteString (recv,send)
+import Control.Monad (forever)
 
 main :: IO ()
 main = do
@@ -17,6 +18,7 @@ main = do
     putStrLn $ "Redis server listening on port " ++ port
     serve HostAny port $ \(socket, address) -> do
         putStrLn $ "successfully connected client: " ++ show address
-        _ <- recv socket 2048
-        _ <- send socket "+PONG\r\n"
+        _ <- forever $ do 
+            _ <- recv socket 2048
+            send socket "+PONG\r\n"
         closeSock socket
