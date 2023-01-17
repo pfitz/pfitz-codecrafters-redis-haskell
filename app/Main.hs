@@ -4,7 +4,7 @@
 
 module Main (main) where
 
-import Network.Simple.TCP (serve, HostPreference(HostAny), closeSock)
+import Network.Simple.TCP (serve, HostPreference(HostAny))
 import Network.Socket.ByteString (recv,send)
 import Control.Monad (forever)
 
@@ -21,4 +21,4 @@ main = do
         _ <- forever $ do 
             _ <- recv socket 2048
             send socket "+PONG\r\n"
-        closeSock socket
+        putStrLn "There needs to be an expression at the end!"    
